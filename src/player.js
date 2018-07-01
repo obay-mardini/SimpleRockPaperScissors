@@ -33,6 +33,12 @@ const Player = class {
     app.appendChild(newPlayerDiv);
     this.options
       .map(createImgElement)
+      .map(img => {
+        img.onclick = e => {
+          this.pickOption(e.target.value);
+        };
+        return img;
+      })
       .forEach(option => newPlayerDiv.appendChild(option));
   }
 };

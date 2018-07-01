@@ -7,17 +7,19 @@ describe("player", function() {
   let mockedDOMElement;
   let mockedCreateDOMElement;
   let mockedCreateImgElement;
+  let mockedIMG;
   beforeEach(() => {
     mockedDOMElement = {
       appendChild: sinon.spy()
     };
+    mockedIMG = {};
     mockedCreateDOMElement = sinon.stub(window, "createDOMElement");
     mockedCreateImgElement = sinon.stub(window, "createImgElement");
     mockedCreateElement = sinon.spy(document, "createElement");
     mockedGetElementById = sinon.stub(document, "getElementById");
     mockedGetElementById.returns(mockedDOMElement);
     mockedCreateDOMElement.returns(mockedDOMElement);
-    mockedCreateImgElement.returns(mockedDOMElement);
+    mockedCreateImgElement.returns(mockedIMG);
     newPlayer = new Player("obay");
     playerWithTwoPoints = new Player("john", [], 2);
   });
@@ -56,10 +58,22 @@ describe("player", function() {
     expect(mockedDOMElement.appendChild.args.length).equal(9);
   });
 
-  it("should be able to pick on option", function() {
+  it("should be able to pick an option", function() {
     const randomIndex = Math.floor(Math.random() * options.length);
     const option = options[randomIndex];
     newPlayer.pickOption(option);
+    expect(newPlayer.option).equal(option);
+  });
+
+  it("should be able to pick an option when clicking on one image", function() {
+    const randomIndex = Math.floor(Math.random() * options.length);
+    const option = options[randomIndex];
+    const mockedEvent = {
+      target: {
+        value: option
+      }
+    };
+    mockedIMG.onclick(mockedEvent);
     expect(newPlayer.option).equal(option);
   });
 });
