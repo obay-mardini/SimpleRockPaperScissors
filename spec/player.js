@@ -1,4 +1,5 @@
 describe("player", function() {
+  const options = ["rock", "paper", "scissor"];
   let newPlayer;
   let playerWithTwoPoints;
   let mockedGetElementById;
@@ -53,5 +54,12 @@ describe("player", function() {
     expect(mockedGetElementById.called).equal(true);
     expect(mockedGetElementById.args.length).equal(2);
     expect(mockedDOMElement.appendChild.args.length).equal(9);
+  });
+
+  it("should be able to pick on option", function() {
+    const randomIndex = Math.floor(Math.random() * options.length);
+    const option = options[randomIndex];
+    newPlayer.pickOption(option);
+    expect(newPlayer.option).equal(option);
   });
 });

@@ -3,7 +3,8 @@ const Player = class {
     this.name = name;
     this.score = score;
     this.options = options;
-    this.renderCard();
+    this.option = "";
+    this.renderPlayer();
   }
 
   increment() {
@@ -14,7 +15,11 @@ const Player = class {
     this.score = 0;
   }
 
-  renderCard() {
+  pickOption(option) {
+    this.option = option;
+  }
+
+  renderPlayer() {
     const app = document.getElementById("app");
     const newPlayerDiv = createDOMElement("div", "player");
     const title = createDOMElement("h3", "player__title", this.name);
