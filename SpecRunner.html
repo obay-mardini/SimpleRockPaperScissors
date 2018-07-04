@@ -10,15 +10,21 @@
   </head>
   <body>
     <div id="mocha"></div>
+    <!-- Test scripts -->
     <script>
       mocha.setup('bdd');
       mocha.checkLeaks();
       window.expect = chai.expect;
       setTimeout(()=>mocha.run(), 0);
-    </script>
+      </script>
+    <script src="spec/board.js"></script>
     <script src="spec/init.js"></script>
     <script src="spec/player.js"></script>
+    <script src="spec/computerPlayer.js"></script>
+    <!-- main files -->
     <script src="src/player.js"></script>
+    <script src="src/computerPlayer.js"></script>
+    <script src="src/board.js"></script>
     <script src="src/init.js"></script>
   </body>
 </html>
